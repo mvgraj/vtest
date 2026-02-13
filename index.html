@@ -97,7 +97,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Will You Be My Valentine?</title>
+  <title>Manu&Varun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
@@ -217,7 +217,7 @@
       `;
     });
   </script> -->
-<script>
+<!-- <script>
   const noBtn = document.getElementById("no");
   const container = document.querySelector(".buttons");
 
@@ -297,6 +297,104 @@
     `;
 
     // Floating hearts
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerText = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 5000);
+    }, 300);
+  });
+</script> -->
+
+
+<script>
+  const noBtn = document.getElementById("no");
+  const container = document.querySelector(".buttons");
+
+  function moveNoButton(e) {
+    if (e) e.preventDefault(); // important for mobile
+
+    const maxX = container.clientWidth - noBtn.offsetWidth;
+    const maxY = container.clientHeight - noBtn.offsetHeight;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+    const rotate = Math.random() * 360;
+
+    noBtn.style.transform = `translate(${x}px, ${y}px) rotate(${rotate}deg)`;
+
+    // Weeii text
+    const weeii = document.createElement("div");
+    weeii.className = "weeii";
+    weeii.innerText = "Weeii 😝";
+    weeii.style.left = `${x + 20}px`;
+    weeii.style.top = `${y}px`;
+
+    container.appendChild(weeii);
+    setTimeout(() => weeii.remove(), 800);
+  }
+
+  /* Desktop */
+  noBtn.addEventListener("mouseenter", moveNoButton);
+
+  /* Mobile */
+  noBtn.addEventListener("touchstart", moveNoButton, { passive: false });
+
+  /* Extra safety */
+  noBtn.addEventListener("click", moveNoButton);
+
+  document.getElementById("yes").addEventListener("click", () => {
+    document.body.innerHTML = `
+      <style>
+        body {
+          margin: 0;
+          height: 100vh;
+          background: linear-gradient(135deg, #ff758c, #ff7eb3);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          font-family: Arial, sans-serif;
+          overflow: hidden;
+          text-align: center;
+        }
+
+        h1 {
+          color: white;
+          font-size: clamp(2rem, 6vw, 3rem);
+          animation: pop 1s ease;
+        }
+
+        p {
+          color: white;
+          font-size: 1.2rem;
+        }
+
+        .heart {
+          position: absolute;
+          font-size: 24px;
+          animation: floatUp 4s linear infinite;
+        }
+
+        @keyframes pop {
+          from { transform: scale(0.6); opacity: 0; }
+          to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes floatUp {
+          from { transform: translateY(100vh); opacity: 1; }
+          to { transform: translateY(-10vh); opacity: 0; }
+        }
+      </style>
+
+      <h1>YAYYYY!!! 💖🥰</h1>
+      <p>You just made my Valentine perfect 💕</p>
+    `;
+
     setInterval(() => {
       const heart = document.createElement("div");
       heart.className = "heart";
